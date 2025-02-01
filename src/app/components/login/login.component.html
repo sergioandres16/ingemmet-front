@@ -1,0 +1,21 @@
+<h2>Login</h2>
+
+<div style="color:red;" *ngIf="errorMessage">
+  {{ errorMessage }}
+</div>
+
+<div>
+  <label>Username/Email:</label>
+  <input type="text" [(ngModel)]="usernameOrEmail" placeholder="Usuario o Email" />
+</div>
+
+<div>
+  <label>Password:</label>
+  <input type="password" [(ngModel)]="password" placeholder="Password" />
+</div>
+
+<button (click)="onLogin()">Ingresar</button>
+
+<p>¿No tienes cuenta?
+  <a routerLink="/register">Regístrate</a>
+</p>
