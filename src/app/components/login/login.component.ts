@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +23,12 @@ export class LoginComponent {
       return;
     }
     this.authService.login(this.usernameOrEmail, this.password).subscribe({
-      next: (res) => {
+      // AuthResponse es la interfaz con { token: string }
+      next: (res: { token: string }) => {
         this.authService.setToken(res.token);
         this.router.navigate(['/dashboard']);
       },
-      error: (err) => {
+      error: (err: any) => {
         console.error(err);
         this.errorMessage = err.error?.message || 'Credenciales inválidas';
       }
