@@ -1,8 +1,14 @@
 import { Component } from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  standalone: true,  // ✅ Agregar esto
+  imports: [RouterModule],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']  // Agrega los estilos si existen
 })
 export class AppComponent {
   title = 'IngemmetFront';
