@@ -1,13 +1,44 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { DashboardComponent } from './components/modulos/dashboard/dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
+
+// Importa tus componentes/páginas hijas (standalone) que vivirán dentro del layout
+import { LayoutComponent } from './layout/layout.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AdministracionComponent } from './pages/administracion/administracion.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'dashboard', loadComponent: () => import('./components/modulos/dashboard/dashboard.component').then(m => m.DashboardComponent), canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },   // Fuera del layout
+  { path: 'register', component: RegisterComponent }, // Fuera del layout
+
+  {
+    path: 'inicio',
+    component: LayoutComponent,    // El "Skeleton"
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
+        path: 'home',
+        component: HomeComponent
+      },
+      {
+        path: 'administracion',
+        component: AdministracionComponent
+      },
+      {
+        path: 'dashboard',
+        loadComponent: () =>
+          import('./components/modulos/dashboard/dashboard.component').then(m => m.DashboardComponent)
+      }
+    ]
+  },
+
+  // Si no existe la ruta, lo mandas a login
   { path: '**', redirectTo: 'login' }
 ];

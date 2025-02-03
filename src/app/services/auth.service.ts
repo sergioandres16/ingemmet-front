@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import {Observable, map, of} from 'rxjs';
+import {Observable, map, of, tap} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 export interface AuthResponse {
+
   token: string;
+  nombre: string;
+  correo: string;
 }
 
 @Injectable({
@@ -20,9 +23,12 @@ export class AuthService {
   login(usernameOrEmail: string, password: string): Observable<AuthResponse> {
     const url = `${this.apiUrl}/auth/login`;
     return this.http.post<AuthResponse>(url, { usernameOrEmail, password }).pipe(
-      map(res => {
+      tap(res => {
+        // Guarda el token (según ya lo hacías)
         this.setToken(res.token);
-        return res;
+        // Guarda el nombre y el correo en sessionStorage para luego usarlos en el sidebar
+        sessionStorage.setItem('nombre', res.nombre);
+        sessionStorage.setItem('correo', res.correo);
       })
     );
   }
