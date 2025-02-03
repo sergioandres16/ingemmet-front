@@ -1,0 +1,151 @@
+/* Ajusta el padding/margin del body si es necesario */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  /* Fondo degradado vertical */
+  background: linear-gradient(#141e30, #2b415b);
+  /* Para ocupar todo el alto de la pantalla */
+  min-height: 100vh;
+}
+
+.login-box {
+  position: absolute;
+  top: 60px; /* Lo mueve más arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  padding: 40px;
+  background: #075DAA;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgb(167 167 167 / 60%);
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* Título de la caja (h2) */
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  text-align: center;
+}
+
+/* Contenedor de cada campo (usuario, email, etc.) */
+.user-box {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* Inputs */
+.user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  color: #fff;
+}
+
+/* Label flotante */
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  font-size: 16px;
+  color: #fff;
+}
+
+/* Efecto flotante cuando el input tiene focus o algo escrito */
+.user-box input:focus ~ label,
+.user-box input.ng-dirty ~ label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: #03e9f4;
+}
+
+/* Contenedor del botón (para centrarlo) */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Botón con animaciones en los bordes */
+.login-box button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px; /* Ajusta el tamaño de padding a gusto */
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+  background-color: #099ae3;
+  color: white;
+  border: 2px solid #2b415b;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+
+/* Efecto hover */
+.login-box button:hover {
+  background: #03e9f4;
+  color: #075DAA;
+  box-shadow:
+    0 0 5px #03e9f4,
+    0 0 25px #03e9f4,
+    0 0 50px #03e9f4,
+    0 0 100px #03e9f4;
+}
+
+/* Mensaje de error en un recuadro */
+.error-message {
+  margin-bottom: 15px;
+  background-color: #f8d7da;
+  color: #8f2e36;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Enlace para “¿Ya tienes cuenta?” */
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Opcional: estilo de un logo en la parte superior */
+.logo-container {
+  text-align: center;
+  margin-bottom: -20px;
+  padding-top: 0;
+  position: relative;
+}
+
+.logo {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+  margin-top: -35px;
+}
+
+/* Estilo para el enlace que lleva al login */
+.estiloa {
+  color: #03e9f4;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.estiloa:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}

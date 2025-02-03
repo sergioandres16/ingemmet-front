@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+// Importa Bootstrap SCSS (sin tilde, gracias a includePaths)
+@use 'bootstrap/scss/bootstrap' as *;
+
+// Importa tu archivo de estilos personalizado (asegúrate de tener este archivo en src/assets/lightning-admin.scss)
+// Si no lo necesitas, puedes comentarlo o crearlo vacío.
+@use './assets/lightning-admin' as *;
+
+// PrimeIcons es un archivo CSS, por ello se importa con @import
+@import 'primeicons/primeicons.css';
+
+// Variables personalizadas
+$hamburger-padding-x: 0px !default;
+$hamburger-padding-y: 0px !default;
+$hamburger-layer-width: 25px !default;
+$hamburger-layer-height: 2px !default;
+$hamburger-layer-spacing: 5px !default;
+$hamburger-layer-color: #9b9ea2 !default;
+$hamburger-layer-border-radius: 4px !default;
+$hamburger-hover-opacity: 0.7 !default;
+
+/* Importa hojas de estilo CSS de terceros */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import 'perfect-scrollbar/css/perfect-scrollbar.css';
+@import 'primeflex/primeflex.css';
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
+
+body {
+  font-size: 0.9rem;
+}
+
+.page-wrapper.toggled .sidebar {
+  left: -300px;
+}
+
+/* Estilos para Perfect Scrollbar */
+.sidebar .ps.ps--scrolling-y > .ps__rail-y,
+.sidebar > .ps.ps--scrolling-x > .ps__rail-x,
+.ps .ps__rail-x:hover,
+.ps .ps__rail-y:hover,
+.ps .ps__rail-x:focus,
+.ps .ps__rail-y:focus,
+.ps .ps__rail-x.ps--clicking,
+.ps .ps__rail-y.ps--clicking {
+  background-color: transparent !important;
+}
+
+.sidebar .ps.ps--active-y > .ps__rail-y:hover,
+.sidebar > .ps.ps--active-y > .ps__rail-y.ps--clicking {
+  width: 10px !important;
+}
+
+.ps__thumb-y {
+  background-color: #fff !important;
+  width: 6px !important;
+  border-radius: 0px !important;
+  opacity: 0.5;
+}
+
+/* Fuentes personalizadas */
+@font-face {
+  font-family: fsalbert;
+  src: url(assets/fonts/FSAlbertPro-Thin.ttf) format("opentype");
+}
+
+@font-face {
+  font-family: fsalbertextrabold;
+  src: url(assets/fonts/fsalbextbol.otf) format("opentype");
+}
+
+@font-face {
+  font-family: fsalbertbold;
+  src: url(assets/fonts/FSAlbert-Bold.otf) format("opentype");
+}
+
+@font-face {
+  font-family: texto;
+  src: url(assets/fonts/FSAlbert-Bold.otf) format("opentype");
+}

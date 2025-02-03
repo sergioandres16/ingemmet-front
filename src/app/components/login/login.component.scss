@@ -1,0 +1,212 @@
+/* Ajusta el padding/margin del body si es necesario */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  /* Fondo degradado vertical */
+  background: linear-gradient(#141e30, #2b415b);
+  /* Para ocupar todo el alto de la pantalla */
+  min-height: 100vh;
+}
+
+.login-box {
+  position: absolute;
+  top: 70px; /* Lo mueve más arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 380px;
+  padding: 40px;
+  background: #075DAA;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgb(167 167 167 / 60%);
+  border-radius: 10px;
+  color: #fff;
+}
+
+/* Título de la caja de login */
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  text-align: center;
+}
+
+/* Contenedor de cada campo de usuario/contraseña */
+.user-box {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+/* Inputs dentro de la caja */
+.user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  color: #fff;
+}
+
+/* Label flotante encima del input */
+.user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  transition: 0.5s;
+  font-size: 16px;
+  color: #fff;
+}
+
+/* Efecto flotante cuando el input está en focus o lleno */
+.user-box input:focus ~ label,
+.user-box input.ng-dirty ~ label {
+  top: -20px;
+  left: 0;
+  font-size: 12px;
+  color: #03e9f4;
+}
+
+/* Contenedor del botón */
+.button-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente si es necesario */
+  width: 100%;
+  margin-top: 20px; /* Espacio superior para separarlo de los inputs */
+}
+
+/* Botón con animaciones en los bordes */
+.login-box button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 30px; /* Ajustado al tamaño del texto */
+  font-size: 20px;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 3px;
+  background-color: #099ae3; /* Diferente del background azul */
+  color: white;
+  border: 2px solid #2b415b; /* Borde definido */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+
+
+/* Efecto hover del botón */
+.login-box button:hover {
+  background: #03e9f4;
+  color: #075DAA;
+  box-shadow: 0 0 5px #03e9f4,
+  0 0 25px #03e9f4,
+  0 0 50px #03e9f4,
+  0 0 100px #03e9f4;
+}
+
+/* Span animado: bordes en movimiento */
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #075DAA);
+  animation: btn-anim1 1s linear infinite;
+}
+@keyframes btn-anim1 {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+.login-box button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #075DAA);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+@keyframes btn-anim2 {
+  0% { top: -100%; }
+  50%, 100% { top: 100%; }
+}
+
+.login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #075DAA);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+@keyframes btn-anim3 {
+  0% { right: -100%; }
+  50%, 100% { right: 100%; }
+}
+
+.login-box button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #075DAA);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+@keyframes btn-anim4 {
+  0% { bottom: -100%; }
+  50%, 100% { bottom: 100%; }
+}
+
+/* Estilo para el mensaje de error */
+.error-message {
+  margin-bottom: 15px;
+  background-color: #f8d7da;
+  color: #8f2e36;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Link para registrar */
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Opcional: Contenedor y estilo para un logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: -20px;
+  padding-top: 0;
+  position: relative;
+}
+.logo {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+  margin-top: -35px;
+}
+
+/* Estilo base para el enlace */
+.estiloa {
+  color: #03e9f4; /* Color del enlace */
+  text-decoration: none; /* Elimina subrayado predeterminado */
+  font-weight: bold; /* Hace que el texto sea más legible */
+  transition: color 0.3s ease-in-out; /* Suaviza el cambio de color */
+}
+
+/* Cambia de color al pasar el mouse sin modificar el fondo */
+.estiloa:hover {
+  color: #ffffff; /* Cambia a blanco al pasar el mouse */
+  text-decoration: underline; /* Opcional: subrayado al hacer hover */
+}
