@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Observable, map } from 'rxjs';
+import {Observable, map, of} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 export interface AuthResponse {
   token: string;
@@ -18,7 +19,12 @@ export class AuthService {
   // Llamada al endpoint de login
   login(usernameOrEmail: string, password: string): Observable<AuthResponse> {
     const url = `${this.apiUrl}/auth/login`;
-    return this.http.post<AuthResponse>(url, { usernameOrEmail, password });
+    return this.http.post<AuthResponse>(url, { usernameOrEmail, password }).pipe(
+      map(res => {
+        this.setToken(res.token);
+        return res;
+      })
+    );
   }
 
   // Llamada al endpoint de registro
@@ -30,23 +36,26 @@ export class AuthService {
   // Llamada al endpoint que valida el token
   validateToken(token: string): Observable<boolean> {
     const url = `${this.apiUrl}/auth/validate`;
-    // GET con header Authorization: Bearer <token>
     const headers = new HttpHeaders({ 'Authorization': `Bearer ${token}` });
+
     return this.http.get(url, { headers, responseType: 'text' }).pipe(
-      // Si no hay error, la respuesta es "Token válido" (200).
-      map(() => true)
+      map(() => true),
+      catchError(() => {
+        this.logout();
+        return of(false);
+      })
     );
   }
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    sessionStorage.setItem('token', token);
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return sessionStorage.getItem('token');
   }
 
   logout(): void {
-    localStorage.removeItem('token');
+    sessionStorage.removeItem('token');
   }
 }
