@@ -1,31 +1,116 @@
-<div>
-  <h2>Administración de Firmas</h2>
+<div class="card">
+  <div class="card-header color-titulo">
+    <div class="row mb-3">
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <h1 class="titulo">Administración de Firmas</h1>
+      </div>
+      <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 text-end">
+        <!-- Botón para refrescar -->
+        <button mat-raised-button color="primary" (click)="refrescar()">
+          <mat-icon>refresh</mat-icon> Refrescar
+        </button>
+      </div>
+    </div>
+  </div>
 
-  <input type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" (input)="applyFilter()">
-  <select [(ngModel)]="selectedColumn" (change)="applyFilter()">
-    <option value="nombre">Nombre</option>
-    <option value="dni">DNI</option>
-  </select>
-  <input type="date" [(ngModel)]="dateFilter" (change)="applyFilter()">
+  <div class="card-body margen-card">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Filtro global (keyUp) => applyFilterGeneral -->
+        <input
+          matInput
+          placeholder="Buscador general..."
+          style="width: 250px; margin-bottom: 10px;"
+          (keyup)="applyFilterGeneral($event)"
+        >
+      </div>
 
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>DNI</th>
-      <th>Ruta Firma</th>
-      <th>Nombre</th>
-      <th>Fecha y Hora</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let signature of signatures">
-      <td>{{ signature.id }}</td>
-      <td>{{ signature.dni }}</td>
-      <td>{{ signature.rutafir }}</td>
-      <td>{{ signature.nombre }}</td>
-      <td>{{ signature.fechahora }}</td>
-    </tr>
-    </tbody>
-  </table>
+      <!-- Filtros específicos -->
+      <div class="col-md-12">
+        <div class="row g-2">
+          <div class="col-auto">
+            <input type="text"
+                   placeholder="Buscar..."
+                   class="form-control"
+                   [(ngModel)]="searchTerm"
+                   (input)="applyFilter()"/>
+          </div>
+          <div class="col-auto">
+            <select class="form-select"
+                    [(ngModel)]="selectedColumn"
+                    (change)="applyFilter()">
+              <option value="nombre">Nombre</option>
+              <option value="dni">DNI</option>
+              <!-- Agrega más si lo deseas, pero asegúrate de agregarlos a selectedColumn -->
+            </select>
+          </div>
+          <div class="col-auto">
+            <input type="date"
+                   class="form-control"
+                   [(ngModel)]="dateFilter"
+                   (change)="applyFilter()">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabla Angular Material -->
+    <div class="scroll mat-elevation-z8 mt-3">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- ID -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.id }}
+          </td>
+        </ng-container>
+
+        <!-- DNI -->
+        <ng-container matColumnDef="dni">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>DNI</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.dni }}
+          </td>
+        </ng-container>
+
+        <!-- Ruta Firma -->
+        <ng-container matColumnDef="rutafir">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ruta Firma</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.rutafir }}
+          </td>
+        </ng-container>
+
+        <!-- Nombre -->
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.nombre }}
+          </td>
+        </ng-container>
+
+        <!-- FechaHora -->
+        <ng-container matColumnDef="fechahora">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha y Hora</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.fechahora }}
+          </td>
+        </ng-container>
+
+        <!-- Cabecera -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <!-- Filas -->
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <!-- Sin data -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="5">No se encontraron firmas</td>
+        </tr>
+      </table>
+
+      <!-- Paginador -->
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+      </mat-paginator>
+    </div>
+  </div>
 </div>

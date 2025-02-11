@@ -76,3 +76,6 @@ body {
   font-family: texto;
   src: url(assets/fonts/FSAlbert-Bold.otf) format("opentype");
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

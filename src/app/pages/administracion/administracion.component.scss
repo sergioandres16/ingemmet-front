@@ -4,11 +4,9 @@ table {
   border-spacing: 100px;
 }
 
-
 tr.mat-footer-row {
   font-weight: bold;
 }
-
 
 .btn-estilos {
   background-color: #075DAA;
@@ -70,7 +68,6 @@ tr.mat-footer-row {
   width: 100%;
 }
 
-
 @media screen and (max-width: 1300px) {
   .card {
     .btn-estilos1 {
@@ -81,9 +78,7 @@ tr.mat-footer-row {
       max-width: 150px;
       margin: 0 40px auto auto;
     }
-
   }
-
 }
 
 @media screen and (max-width: 1000px) {
@@ -104,10 +99,7 @@ tr.mat-footer-row {
       width: 110%;
       margin: 1rem auto 1rem;
     }
-
-
   }
-
 }
 
 .buscador1 {
@@ -122,21 +114,19 @@ tr.mat-footer-row {
   border: 2px solid #075DAA;
 }
 
-.modal-header{
+.modal-header {
   background-color: #075DAA;
   color: white;
   text-align: justify;
   font-size: 20px;
-
 }
 
-.parrafo{
+.parrafo {
   text-align: justify;
   font-size: 18px;
 }
 
-.notificaciones-parrafo{
+.notificaciones-parrafo {
   text-align: justify;
   font-size: 20px;
 }
-
