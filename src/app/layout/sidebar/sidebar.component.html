@@ -44,7 +44,7 @@
               </div>
             </a>
             <!-- Submenús (dropdown) con animación -->
-            <div *ngIf="menu.type === 'dropdown'" class="sidebar-submenu" [@slide]="getState(menu)">
+            <div *ngIf="menu.type === 'dropdown' && menu.active" class="sidebar-submenu" [@slide]="getState(menu)">
               <ul>
                 <li *ngFor="let submenu of menu.submenus">
                   <!-- Opción de cierre de sesión -->

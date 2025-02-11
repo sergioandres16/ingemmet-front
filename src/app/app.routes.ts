@@ -30,11 +30,6 @@ export const routes: Routes = [
       {
         path: 'administracion',
         component: AdministracionComponent
-      },
-      {
-        path: 'dashboard',
-        loadComponent: () =>
-          import('./components/modulos/dashboard/dashboard.component').then(m => m.DashboardComponent)
       }
     ]
   },

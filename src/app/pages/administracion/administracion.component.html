@@ -1,4 +1,31 @@
-<div class="container">
-  <h2>Administración</h2>
-  <p>Aquí podrías colocar tablas, paneles de administración, etc.</p>
+<div>
+  <h2>Administración de Firmas</h2>
+
+  <input type="text" placeholder="Buscar..." [(ngModel)]="searchTerm" (input)="applyFilter()">
+  <select [(ngModel)]="selectedColumn" (change)="applyFilter()">
+    <option value="nombre">Nombre</option>
+    <option value="dni">DNI</option>
+  </select>
+  <input type="date" [(ngModel)]="dateFilter" (change)="applyFilter()">
+
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>DNI</th>
+      <th>Ruta Firma</th>
+      <th>Nombre</th>
+      <th>Fecha y Hora</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let signature of signatures">
+      <td>{{ signature.id }}</td>
+      <td>{{ signature.dni }}</td>
+      <td>{{ signature.rutafir }}</td>
+      <td>{{ signature.nombre }}</td>
+      <td>{{ signature.fechahora }}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>

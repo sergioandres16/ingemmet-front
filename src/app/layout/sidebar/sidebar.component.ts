@@ -22,23 +22,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
   ]
 })
 export class SidebarComponent implements OnInit {
-  // Menús de navegación
-  menus: any[] = [
-    { title: 'Principal', icon: 'fa-solid fa-home', url: '/inicio/home', type: 'link' },
-    {
-      title: 'Administración',
-      icon: 'fa-solid fa-gear',
-      type: 'dropdown',
-      active: false,
-      submenus: [
-        { title: 'Usuarios', url: '/inicio/usuarios', icon: 'fa-solid fa-users' },
-        { title: 'Configuración', url: '/inicio/configuracion', icon: 'fa-solid fa-sliders' }
-      ]
-    },
-    { title: 'Dashboard', icon: 'fa-solid fa-chart-line', url: '/inicio/dashboard', type: 'link' }
-  ];
-
-  // Variables para almacenar la información del usuario
+  menus: any[] = [];
   nombres: string | null = '';
   correo: string | null = '';
 
@@ -49,51 +33,42 @@ export class SidebarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Recupera los datos del usuario del sessionStorage
+    // Recupera nombre y correo de la sesión
     this.nombres = sessionStorage.getItem('nombre');
     this.correo = sessionStorage.getItem('correo');
+
+    // Obtiene la lista de menús sin depender de roles
+    this.menus = this.sidebarService.getMenuList();
   }
 
-  /** Retorna el estado del sidebar (para mostrar/ocultar en el layout) */
   getSideBarState(): boolean {
     return this.sidebarService.getSidebarState();
   }
 
-  /**
-   * Cambia el estado de un menú tipo dropdown.
-   * Activa o desactiva el menú y cierra los demás.
-   */
-  toggle(currentMenu: any): void {
+  toggle(currentMenu: any) {
     if (currentMenu.type === 'dropdown') {
-      this.menus.forEach(element => {
-        if (element === currentMenu) {
-          currentMenu.active = !currentMenu.active;
+      this.menus.forEach(menu => {
+        if (menu === currentMenu) {
+          menu.active = !menu.active; // Alterna el estado del menú clicado
         } else {
-          element.active = false;
+          menu.active = false; // Cierra los otros menús
         }
       });
     }
   }
 
-  /** Retorna 'down' o 'up' según el estado del menú (para la animación) */
-  getState(currentMenu: any): string {
+  getState(currentMenu: any) {
     return currentMenu.active ? 'down' : 'up';
   }
 
-  /** Cambia el estado del sidebar (por ejemplo, para ocultarlo o mostrarlo) */
   toggleSidebar(): void {
     this.sidebarService.setSidebarState(!this.sidebarService.getSidebarState());
   }
 
-  /** Cierra el sidebar (útil en dispositivos móviles) */
   cerrarSidebar(): void {
     this.sidebarService.toggle();
   }
 
-  /**
-   * Ejecuta el cierre de sesión mostrando un SweetAlert de confirmación.
-   * Al confirmar, se eliminan los datos de sesión y se redirige a la ruta raíz.
-   */
   cerrarSession(e: any): void {
     Swal.fire({
       title: 'Desea cerrar sesión?',
@@ -104,17 +79,12 @@ export class SidebarComponent implements OnInit {
       confirmButtonText: 'Si, cerrar sesión!'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Elimina la información del usuario
-        sessionStorage.removeItem('nombre');
-        sessionStorage.removeItem('correo');
-        sessionStorage.removeItem('token');
         sessionStorage.clear();
         this.mensaje();
       }
     });
   }
 
-  /** Muestra un mensaje de sesión cerrada y redirige a la ruta raíz */
   mensaje(): void {
     Swal.fire({
       icon: 'success',
