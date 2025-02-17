@@ -1,0 +1,111 @@
+// Estilo del encabezado del modal
+.modal-header {
+  background-color: #075DAA;
+  color: white;
+  font-size: 26px;
+  font-weight: bold;
+  padding: 15px;
+  text-align: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-family: 'fsalbertextrabold';
+  margin: 0;
+}
+
+// Contenido del modal
+.modal-body {
+  font-size: 18px;
+  color: #333;
+  padding: 20px;
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+
+  p {
+    margin: 10px 0;
+  }
+
+  strong {
+    color: #075DAA;
+  }
+}
+
+// Pie de modal con botón alineado a la derecha
+.modal-footer {
+  background-color: #f4f4f4;
+  padding: 15px;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.btn-cerrar {
+  background-color: #D32F2F !important; // Rojo
+  color: white !important;
+  font-size: 17px;
+  padding: 8px 15px;
+  border: 2px solid #D32F2F;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+
+  &:hover {
+    background-color: white !important;
+    color: #D32F2F !important;
+  }
+}
+
+// Estiliza el modal en general
+.mat-dialog-container {
+  background-color: white;
+  border: 3px solid #075DAA;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  padding: 0px;
+  overflow: hidden; // Elimina bordes blancos de las esquinas
+}
+
+.mat-dialog-content {
+  font-size: 22px;
+  color: #333;
+  padding: 10px 20px;
+  text-align: left;
+  font-family: 'Arial', sans-serif;
+
+  p {
+    margin: 10px 0;
+  }
+
+  strong {
+    color: #075DAA;
+    font-size: 19px;
+  }
+}
+
+.mat-dialog-title {
+  background-color: #075DAA;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  padding: 15px;
+  text-align: left; // Alineado a la izquierda
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-family: 'fsalbertextrabold';
+  margin: -20px -20px 20px -20px;
+}
+
+.modal-container {
+  overflow: hidden; /* Asegura que no haya desbordes visibles */
+  border-radius: 8px;
+}
+
+.modal-header, .modal-footer {
+  border-radius: 8px 8px 0 0;
+}
+.custom-modal {
+  border-radius: 8px;
+  overflow: hidden; /* Para evitar que sobresalga el fondo blanco */
+  background-color: white;
+}

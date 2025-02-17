@@ -1,0 +1,13 @@
+<div class="custom-modal">
+  <h2 mat-dialog-title class="modal-header">Cantidad de Firmas</h2>
+
+  <mat-dialog-content class="modal-body">
+    <p>Cantidad total de firmas permitidas: <strong>{{ data.totalAllowed }}</strong></p>
+    <p>Cantidad total de firmas realizadas: <strong>{{ data.totalUsed }}</strong></p>
+    <p>Cantidad de firmas restantes: <strong>{{ totalRemaining }}</strong></p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="modal-footer">
+    <button mat-raised-button class="btn-cerrar" (click)="closeModal()">Cerrar</button>
+  </mat-dialog-actions>
+</div>

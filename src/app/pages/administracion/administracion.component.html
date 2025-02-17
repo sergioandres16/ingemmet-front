@@ -9,53 +9,103 @@
         <button mat-raised-button color="primary" (click)="refrescar()">
           <mat-icon>refresh</mat-icon> Refrescar
         </button>
+
+        <!-- Botón para Exportar Excel -->
+        <button mat-raised-button color="accent" style="margin-left: 10px;" (click)="exportTableToExcel()">
+          <mat-icon>save_alt</mat-icon> Exportar Excel
+        </button>
+
+        <!-- Botón de Información -->
+        <button mat-raised-button class="btn-orange" style="margin-left: 10px;" (click)="openInfoModal()">
+          <mat-icon>info</mat-icon> Información
+        </button>
       </div>
     </div>
   </div>
 
   <div class="card-body margen-card">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- Filtro global (keyUp) => applyFilterGeneral -->
+
+    <!-- FILTROS -->
+    <div class="row g-3 align-items-end mb-3">
+      <!-- Buscador general -->
+      <div class="col-md-2">
+        <label for="generalSearch" class="form-label fw-bold">Buscador general</label>
         <input
           matInput
-          placeholder="Buscador general..."
-          style="width: 250px; margin-bottom: 10px;"
+          id="generalSearch"
+          placeholder="Ingrese texto..."
+          class="form-control"
           (keyup)="applyFilterGeneral($event)"
-        >
+        />
       </div>
 
-      <!-- Filtros específicos -->
-      <div class="col-md-12">
-        <div class="row g-2">
-          <div class="col-auto">
-            <input type="text"
-                   placeholder="Buscar..."
-                   class="form-control"
-                   [(ngModel)]="searchTerm"
-                   (input)="applyFilter()"/>
-          </div>
-          <div class="col-auto">
-            <select class="form-select"
-                    [(ngModel)]="selectedColumn"
-                    (change)="applyFilter()">
-              <option value="nombre">Nombre</option>
-              <option value="dni">DNI</option>
-              <!-- Agrega más si lo deseas, pero asegúrate de agregarlos a selectedColumn -->
-            </select>
-          </div>
-          <div class="col-auto">
-            <input type="date"
-                   class="form-control"
-                   [(ngModel)]="dateFilter"
-                   (change)="applyFilter()">
-          </div>
-        </div>
+      <!-- Texto a buscar -->
+      <div class="col-md-2">
+        <label for="searchTerm" class="form-label fw-bold">Buscar</label>
+        <input
+          type="text"
+          id="searchTerm"
+          placeholder="Buscar..."
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (input)="applyFilter()"
+        />
+      </div>
+
+      <!-- Columna (nombre / dni) -->
+      <div class="col-md-2">
+        <label for="selectedColumn" class="form-label fw-bold">Columna</label>
+        <select
+          class="form-select"
+          id="selectedColumn"
+          [(ngModel)]="selectedColumn"
+          (change)="applyFilter()"
+        >
+          <option value="nombre">Nombre</option>
+          <option value="dni">DNI</option>
+        </select>
+      </div>
+
+      <!-- Fecha exacta -->
+      <div class="col-md-2">
+        <label for="dateFilter" class="form-label fw-bold">Fecha exacta</label>
+        <input
+          type="date"
+          id="dateFilter"
+          class="form-control"
+          [(ngModel)]="dateFilter"
+          (change)="applyFilter()"
+        />
+      </div>
+
+      <!-- Fecha Desde -->
+      <div class="col-md-2">
+        <label for="startDateFilter" class="form-label fw-bold">Fecha Desde</label>
+        <input
+          type="date"
+          id="startDateFilter"
+          class="form-control"
+          [(ngModel)]="startDateFilter"
+          (change)="applyFilter()"
+        />
+      </div>
+
+      <!-- Fecha Hasta -->
+      <div class="col-md-2">
+        <label for="endDateFilter" class="form-label fw-bold">Fecha Hasta</label>
+        <input
+          type="date"
+          id="endDateFilter"
+          class="form-control"
+          [(ngModel)]="endDateFilter"
+          (change)="applyFilter()"
+        />
       </div>
     </div>
+    <!-- FIN FILTROS -->
 
     <!-- Tabla Angular Material -->
-    <div class="scroll mat-elevation-z8 mt-3">
+    <div class="mat-elevation-z8 mt-3">
       <table mat-table [dataSource]="dataSource" matSort>
 
         <!-- ID -->
@@ -94,7 +144,7 @@
         <ng-container matColumnDef="fechahora">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha y Hora</th>
           <td mat-cell *matCellDef="let row">
-            {{ row.fechahora }}
+            {{ row.fechahora | date:'dd/MM/yyyy HH:mm:ss' }}
           </td>
         </ng-container>
 

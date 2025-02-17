@@ -1,5 +1,5 @@
 table {
-  width: 250%;
+  width: 100%;
   text-align: center;
   border-spacing: 100px;
 }
@@ -48,7 +48,7 @@ tr.mat-footer-row {
 }
 
 .margen-card {
-  border: 0.1ex solid #075DAA;
+  border: 0.5ex solid #075DAA;
 }
 
 .margen {
@@ -56,7 +56,8 @@ tr.mat-footer-row {
 }
 
 .scroll {
-  overflow-x: scroll;
+  max-height: none;
+  overflow-y: visible;
 }
 
 .card {
@@ -129,4 +130,9 @@ tr.mat-footer-row {
 .notificaciones-parrafo {
   text-align: justify;
   font-size: 20px;
+}
+
+.btn-orange {
+  background-color: #ed7408 !important;
+  color: white !important;
 }
